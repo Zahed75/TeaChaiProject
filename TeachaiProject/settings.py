@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,7 +41,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Tea_App',
     'django_cleanup.apps.CleanupConfig',
+    'ckeditor',
 ]
+
+MATERIAL_ADMIN_SITE = {
+    'HEADER':  ('TeaCaChai Administration'),  # Admin site header
+    'TITLE':  ('TeaCaChai Administration'),  # Admin site title
+    'FAVICON':  'img/logo.ico',  # Admin site favicon (path to static should be specified)
+    'MAIN_BG_COLOR':  'black',  # Admin site main color, css color should be specified
+    'MAIN_HOVER_COLOR':  '#145553',  # Admin site main hover color, css color should be specified
+    'PROFILE_PICTURE':  'img/logo.jpg',  # Admin site profile picture (path to static should be specified)
+    'PROFILE_BG':  'img/admin_profile_bg.jpg',  # Admin site profile background (path to static should be specified)
+    'LOGIN_LOGO':  'img/logo.jpg',  # Admin site logo on login page (path to static should be specified)
+    'LOGOUT_BG':  'img/admin_profile_bg.jpg',  # Admin site background on login/logout pages (path to static should be specified)
+    'SHOW_THEMES':  True,  #  Show default admin themes button
+    'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
+    'SHOW_COUNTS': True, # Show instances counts for each model
+    'APP_ICONS': { 'Tea_App' : 'apps' },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +76,7 @@ ROOT_URLCONF = 'TeachaiProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 

@@ -1,0 +1,56 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %} Types {% endblock title %}
+
+{% block content %}
+
+
+        <!-- ======== Featured heading ========= -->
+        <div class="featured-section mt-5 d-flex justify-content-center">
+            <div class="featured-heading mt-5 text-center">
+                <b><span>Variations of Tea For You</span></b>
+            </div>
+        </div>
+        <!-- ======== Featured heading ========= -->
+
+        <!-- ======== Featured items ========== -->
+        <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
+            <div>
+                <a href="./tea-details.html"><img src="{% static 'img/black-tea.jpg' %}" class="img-fluid"></a> <br>
+                <b>Black Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>White Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/green-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>Green Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/oolong-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>Oolong Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/rooibos-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>Rooibos Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/fermented-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>Fermented Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/herbal-tea.jpg' %}" class="img-fluid"></a><br>
+                <b>Herbal Tea</b>
+            </div>
+            <div>
+                <a href="#"><img src="{% static 'img/matcha-tea.jpg' %}" class="img-fluid"></a> <br>
+                <b>Matcha Tea</b>
+            </div>
+        </div>
+        <!-- ======== Featured items ========== -->
+
+    </section>
+
+{% endblock content %}
