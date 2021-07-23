@@ -59,6 +59,20 @@ def blog(request):
 def help(request):
     site_utils = SiteUtilities.objects.all()
     dict = {'site_utils' : site_utils}
+
+    if request.method == "POST":
+        help_name = request.POST.get('help_name') 
+        help_email = request.POST.get('help_email')
+        help_subject = request.POST.get('help_subject')
+        help_message = request.POST.get('help_message')
+
+        print("\n===========\n", help_name,"\n=============\n") # for debugging
+
+        """ Contact / help mailing code 
+            goes here. """
+        
+        messages.success(request, "Your Message Was Sent To The Admin Successfully!")
+
     return render(request, 'Tea_App/help.html', dict)
 
 def tea_details(request):
@@ -66,3 +80,5 @@ def tea_details(request):
 
 def types(request):
     return render(request, 'Tea_App/types.html')
+
+

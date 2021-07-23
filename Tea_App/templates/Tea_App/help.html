@@ -15,11 +15,12 @@
             </div>
             <div class="row mt-5">
                 <div class="col-sm-7 contact-form">
-                    <form class="form-group help-form">
-                        <input type="text" name="name" class="form-control" placeholder="Your name">
-                        <input type="text" name="email" class="form-control" placeholder="Your email address">
-                        <input type="text" name="subject" class="form-control" placeholder="Subject for help">
-                        <textarea name="massage" rows="9" class="form-control" placeholder="Your help massage"></textarea>
+                    <form class="form-group help-form" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="help_name" class="form-control" placeholder="Your name" required>
+                        <input type="text" name="help_email" class="form-control" placeholder="Your email address" required>
+                        <input type="text" name="help_subject" class="form-control" placeholder="Subject for help" required>
+                        <textarea name="help_message" rows="9" class="form-control" placeholder="Your help message" required></textarea>
                         <input type="submit" value="HELP!" class="btn btn-dark mt-3 help-send-btn">
                     </form>
                 </div>
