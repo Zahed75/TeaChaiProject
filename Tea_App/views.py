@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, View, TemplateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
@@ -9,6 +9,8 @@ from django.views.generic.edit import DeleteView
 from django.views import View
 from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+
 # Create your views here.
 
 def home(request):
@@ -26,59 +28,100 @@ def home(request):
         if match:
             messages.error(request, "You Are Already Subscribed!")
         else:
-            subs_ins = Subscribers(subs_mail = subs_mail, subs_first_name = subs_first_name)
+            subs_ins = Subscribers(subs_mail=subs_mail, subs_first_name=subs_first_name)
             subs_ins.save()
             messages.success(request, "Subscription Added Successfully!")
-
 
     image_slider = ImageSlider.objects.all()
     about_me = AboutMe.objects.all()
     site_utils = SiteUtilities.objects.all()
-    dict = {'about_me' : about_me, 'img_slider' : image_slider, 'site_utils' : site_utils}
+    dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils}
     return render(request, 'Tea_App/index.html', dict)
+
 
 def about(request):
     site_utils = SiteUtilities.objects.all()
-    dict = {'site_utils' : site_utils}
+    dict = {'site_utils': site_utils}
     return render(request, 'Tea_App/about.html', dict)
+
 
 def blog_details(request, pk):
     blog1 = Blog.objects.order_by('-published_date')
     blog = Blog.objects.get(id=pk)
-    dict = {'blog': blog, 'recent_blogs' : blog1}
+    dict = {'blog': blog, 'recent_blogs': blog1}
     return render(request, 'Tea_App/blog-details.html', dict)
+
 
 def blog(request):
     blog = Blog.objects.order_by('-published_date')
     paginator = Paginator(blog, 6)
     page = request.GET.get('page')
     paged_blogs = paginator.get_page(page)
-    dict = {'blog' : paged_blogs, 'recent_blogs' : blog}
+    dict = {'blog': paged_blogs, 'recent_blogs': blog}
     return render(request, 'Tea_App/blog.html', dict)
 
-def help(request):
-    site_utils = SiteUtilities.objects.all()
-    dict = {'site_utils' : site_utils}
 
-    if request.method == "POST":
-        help_name = request.POST.get('help_name') 
+#
+# def help(request):
+#     site_utils = SiteUtilities.objects.all()
+#     dict = {'site_utils' : site_utils}
+#
+#     if request.method == "POST":
+#         help_name = request.POST.get('help_name')
+#         help_email = request.POST.get('help_email')
+#         help_subject = request.POST.get('help_subject')
+#         help_message = request.POST.get('help_message')
+#
+#         print("\n===========\n", help_name,"\n=============\n") # for debugging
+#
+#         """ Contact / help mailing code
+#             goes here. """
+#
+#         messages.success(request, "Your Message Was Sent To The Admin Successfully!")
+#         message = "From: " + help_email + "n/"  " " + help_message
+#
+#         mail = EmailMessage(help_subject, message, to=[settings.EMAIL_HOST_USER])
+#         mail.content_subtype = 'html'
+#         mail.send()
+#
+#
+#     return render(request, 'Tea_App/help.html', dict)
+
+
+class Contact(TemplateView):
+    template_name = './Tea_App/help.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        help_name = request.POST.get('help_name')
         help_email = request.POST.get('help_email')
         help_subject = request.POST.get('help_subject')
         help_message = request.POST.get('help_message')
 
-        print("\n===========\n", help_name,"\n=============\n") # for debugging
+        # message = "From: " + email + "/n"  " " + message
+        message = "From: " + help_email + "/n"  " " + help_message
+        mail = EmailMessage(help_subject, message, to=[settings.EMAIL_HOST_USER])
+        mail.content_subtype = 'html'
+        mail.send()
+        return render(request, './Tea_App/help.html')
 
-        """ Contact / help mailing code 
-            goes here. """
-        
-        messages.success(request, "Your Message Was Sent To The Admin Successfully!")
-
-    return render(request, 'Tea_App/help.html', dict)
 
 def tea_details(request):
     return render(request, 'Tea_App/tea-details.html')
 
+
 def types(request):
     return render(request, 'Tea_App/types.html')
 
+
+def search(request):
+    if request.method == "POST":
+        searched=request.POST['searched']
+        blog=Blog.objects.filter(name_contains=searched)
+        return render(request, 'Tea_App/search.html', {'searched':searched,'blog':blog})
+
+    else:
+        return render(request, 'Tea_App/search.html', context=dict)
 
