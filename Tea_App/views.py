@@ -7,7 +7,7 @@ from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth.models import User
 from django.views.generic.edit import DeleteView
 from django.views import View
-from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers
+from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
@@ -35,7 +35,8 @@ def home(request):
     image_slider = ImageSlider.objects.all()
     about_me = AboutMe.objects.all()
     site_utils = SiteUtilities.objects.all()
-    dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils}
+    types = TypesOfTea.objects.all()
+    dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types}
     return render(request, 'Tea_App/index.html', dict)
 
 
@@ -108,12 +109,20 @@ class Contact(TemplateView):
         return render(request, './Tea_App/help.html')
 
 
-def tea_details(request):
-    return render(request, 'Tea_App/tea-details.html')
+def tea_details(request, id):
+    tea_type = TypesOfTea.objects.get(pk=id)
+    data = {'tea_type': tea_type}
+    return render(request, 'Tea_App/tea-details.html', data)
 
 
 def types(request):
-    return render(request, 'Tea_App/types.html')
+    site_utils = SiteUtilities.objects.all()
+    types = TypesOfTea.objects.all()
+    data = {
+        'site_utils' : site_utils,
+        'types' : types
+    }
+    return render(request, 'Tea_App/types.html', data)
 
 
 def search(request):

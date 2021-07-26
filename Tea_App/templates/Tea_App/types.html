@@ -9,18 +9,25 @@
         <!-- ======== Featured heading ========= -->
         <div class="featured-section mt-5 d-flex justify-content-center">
             <div class="featured-heading mt-5 text-center">
-                <b><span>Variations of Tea For You</span></b>
+            {% for item in site_utils %}
+                {{item.types_heading | safe }}
+            {% endfor %}
+                {% comment %} <b><span>Variations of Tea For You</span></b> {% endcomment %}
             </div>
         </div>
         <!-- ======== Featured heading ========= -->
 
         <!-- ======== Featured items ========== -->
         <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
+        {% for type in types %}
             <div>
-                <a href="./tea-details.html"><img src="{% static 'img/black-tea.jpg' %}" class="img-fluid"></a> <br>
-                <b>Black Tea</b>
+                <a href="{% url 'Tea_App:tea_details' type.id %}"><img src="{{type.tea_picture.url}}" class="img-fluid"></a> <br>
+                {% comment %} <a href="./tea-details.html"><img src="{% static 'img/black-tea.jpg' %}" class="img-fluid"></a> <br> {% endcomment %}
+                <b>{{type.type_name}}</b>
             </div>
-            <div>
+        {% endfor %}
+            
+            {% comment %} <div>
                 <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
                 <b>White Tea</b>
             </div>
@@ -47,7 +54,7 @@
             <div>
                 <a href="#"><img src="{% static 'img/matcha-tea.jpg' %}" class="img-fluid"></a> <br>
                 <b>Matcha Tea</b>
-            </div>
+            </div> {% endcomment %}
         </div>
         <!-- ======== Featured items ========== -->
 

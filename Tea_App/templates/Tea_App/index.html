@@ -35,19 +35,26 @@
                 <!-- ======== Featured heading ========= -->
                 <div class="featured-section mt-5 d-flex justify-content-center">
                     <div class="featured-heading mt-5 text-center">
-                        <b>Featured Listings</b><br>
-                        <b><span>Find Your Perfect Tea</span></b>
+                        {% for item in site_utils %}
+                            {{item.home_first_section_heading | safe }}
+                        {% endfor %}
+                        {% comment %} <b>Featured Listings</b><br>
+                        <b><span>Find Your Perfect Tea</span></b> {% endcomment %}
                     </div>
                 </div>
                 <!-- ======== / Featured heading ========= -->
 
                 <!-- ======== Featured items ========== -->
                 <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
-                    <div>
-                        <a href="./tea-details.html"><img src="{% static 'img/black-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Black Tea</b>
-                    </div>
-                    <div>
+                {% for item in types %}
+                    {% if item.first_section %}
+                        <div>
+                            <a href="{% url 'Tea_App:tea_details' item.id %}"><img src="{{item.tea_picture.url}}" class="img-fluid"></a><br>
+                            <b>{{item.type_name}}</b>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                    {% comment %} <div>
                         <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
                         <b>White Tea</b>
                     </div>
@@ -74,7 +81,7 @@
                     <div>
                         <a href="#"><img src="{% static 'img/matcha-tea.jpg' %}" class="img-fluid"></a><br>
                         <b>Matcha Tea</b>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <!-- ======== Featured items ========== -->
             </div>
@@ -114,21 +121,29 @@
         <div class="col-sm-12 knowledge-section mt-5 text-center">
             <div class="featured-section mt-5 ">
                 <div class="featured-heading mt-5 text-center knowledge-heading">
-                    <b><span>Tea Knowledge</span></b>
+                    {% for item in site_utils %}
+                        {{item.home_second_section_heading | safe }}
+                    {% endfor %}
+                    {% comment %} <b><span>Tea Knowledge</span></b> {% endcomment %}
                 </div>
                 <div class="featured-items d-flex flex-row flex-wrap text-center justify-content-center">
-                    <div>
-                        <a href="./tea-details.html"><img src="{% static 'img/black-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Black Tea</b>
-                    </div>
-                    <div>
+                {% for item in types %}
+                    {% if item.second_section %}
+                        <div>
+                            <a href="{% url 'Tea_App:tea_details' item.id %}"><img src="{{item.tea_picture.url}}" class="img-fluid"></a><br>
+                            <b>{{item.type_name}}</b>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                    {% comment %} <div>
                         <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
                         <b>White Tea</b>
                     </div>
                     <div>
                         <a href="#"><img src="{% static 'img/green-tea.jpg' %}" class="img-fluid"></a><br>
                         <b>Green Tea</b>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

@@ -6,12 +6,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
 
-# Create your models here.
 
 class SiteUtilities(models.Model):
     about_us_avatar = models.ImageField(upload_to = 'site_utilities')
     about_us_description = RichTextField()
     help_text = RichTextField()
+    home_first_section_heading = RichTextField()
+    home_second_section_heading = RichTextField()
+    types_heading = RichTextField()
 
 class Subscribers(models.Model):
     subs_mail = models.EmailField(max_length=300)
@@ -41,13 +43,6 @@ def at_ending_save(sender, instance, created, **kwargs):
             fail_silently=False
         )
 
-        # print("\n================ New post uploaded =================\n") # for debugging
-        #
-        # """ New post uploaded notification for the subscribers code goes here """
-
-
-
-
 class AboutMe(models.Model):
     about_me_avatar = models.ImageField(upload_to = 'about_me_picture')
     about_me_description = RichTextField()
@@ -55,3 +50,11 @@ class AboutMe(models.Model):
 class ImageSlider(models.Model):
     slider_img = models.ImageField(upload_to = 'slider_images')
     active = models.BooleanField(default=False)
+
+class TypesOfTea(models.Model):
+    tea_picture = models.ImageField(upload_to='tea_types')
+    type_name = models.CharField(max_length = 100, null=True)
+    tea_description = RichTextField()
+    first_section = models.BooleanField(default = False)
+    second_section = models.BooleanField(default = False)
+

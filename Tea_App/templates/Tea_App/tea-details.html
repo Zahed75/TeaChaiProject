@@ -7,13 +7,14 @@
 
         <div class="row mt-5">
             <div class="col-md-6 mb-3">
-                <img src="{% static 'img/black-tea.jpg' %}" class="img-fluid">
+                <h3 class="my-3">{{tea_type.type_name}}</h3>
+                <img src="{{tea_type.tea_picture.url}}" class="img-fluid my-5">
             </div>
 
-            <div class="col-md-6">
-                <h3>Black Tea</h3>
+            <div class="col-sm-12">
 
-                <p>Lorem ipsum dolor sit, amet consectetur
+                {{tea_type.tea_description | safe }}
+                {% comment %} <p>Lorem ipsum dolor sit, amet consectetur
                      adipisicing elit. Voluptate, ipsa mai
                      ores repellendus aut tenetur fuga quo
                      d exercitationem quidem recusandae do
@@ -84,7 +85,7 @@
                        em quidem iure quae ipsum tempora neque vel voluptatum impedit deleniti,
                         dignissimos aperiam hic inventore optio eveniet odio. Doloribus tempori
                 bus quae quos praesentium non voluptatum.</p>
-            </div>
+            </div> {% endcomment %}
 
         </div>
 

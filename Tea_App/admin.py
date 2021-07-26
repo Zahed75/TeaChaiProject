@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider
+from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider, TypesOfTea
 # Register your models here.
 
 @admin.register(Blog)
@@ -26,3 +26,8 @@ class AboutMeAdmin(admin.ModelAdmin):
 class ImageSliderAdmin(admin.ModelAdmin):
     list_display = ('id', 'slider_img', 'active')
     icon_name = 'image'
+
+@admin.register(TypesOfTea)
+class TypesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'first_section', 'second_section')
+    icon_name = 'view_column'
