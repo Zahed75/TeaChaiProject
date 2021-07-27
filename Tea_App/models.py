@@ -26,6 +26,9 @@ class Blog(models.Model):
     thumbnail_img = models.ImageField(upload_to = 'blog_thumbnails')
     published_date = models.DateTimeField(default=datetime.now(), blank=True)
 
+    def __str__(self):
+        return self.title
+
 @receiver(post_save, sender=Blog)
 def at_ending_save(sender, instance, created, **kwargs):
     if created:

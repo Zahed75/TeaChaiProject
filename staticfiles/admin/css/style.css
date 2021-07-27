@@ -42,6 +42,14 @@ input[type=number]:focus,
     padding: 5px;
 }
 
+/*====== Header search =======*/
+
+/*.search_btn {*/
+/*    */
+/*}*/
+
+/*====== Header search =======*/
+
 .first-banner #facebook:hover {
     color: 	#4267B2;
 }
@@ -218,6 +226,8 @@ input[type=number]:focus,
 .subscription-card {
     text-align: left;
 }
+
+
 
 /* ------ Subesciption section ------- */
 
@@ -544,3 +554,10 @@ input[type=number]:focus,
 
 
 /* =============== Blog page details starts ============= */
+
+/*======= Search item =======*/
+.search_items a {
+    text-decoration: none !important;
+    color: black !important;
+}
+/*======= Search item =======*/

@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.template.defaultfilters import title
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, View, TemplateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
@@ -7,13 +8,18 @@ from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth.models import User
 from django.views.generic.edit import DeleteView
 from django.views import View
+
+# from Tea_App.views import blog
 from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
+# from .models import *
+
 # Create your views here.
 
 def home(request):
+    #     ==================
     if request.method == "POST":
         subs_mail = request.POST.get('subs_mail')
         subs_first_name = request.POST.get('subs_first_name')
@@ -36,8 +42,12 @@ def home(request):
     about_me = AboutMe.objects.all()
     site_utils = SiteUtilities.objects.all()
     types = TypesOfTea.objects.all()
-    dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types}
-    return render(request, 'Tea_App/index.html', dict)
+
+    template_name = 'Tea_App/index.html'
+    dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types,
+            }
+
+    return render(request, template_name, context=dict)
 
 
 def about(request):
@@ -119,18 +129,30 @@ def types(request):
     site_utils = SiteUtilities.objects.all()
     types = TypesOfTea.objects.all()
     data = {
-        'site_utils' : site_utils,
-        'types' : types
+        'site_utils': site_utils,
+        'types': types
     }
     return render(request, 'Tea_App/types.html', data)
 
 
+# def search(request):
+#     if request.method == "POST":
+#         query_name = request.POST.get('name', None)
+#         if query_name:
+#             results = Blog.objects.filter(name__contains=query_name)
+#             return render(request, 'Tea_App/search.html', {"results": results})
+#
+#     return render(request, 'Tea_App/search.html')
+
+
 def search(request):
+    search_query = ""
     if request.method == "POST":
-        searched=request.POST['searched']
-        blog=Blog.objects.filter(name_contains=searched)
-        return render(request, 'Tea_App/search.html', {'searched':searched,'blog':blog})
+        search_query = request.POST.get("search")
+    types_teas=Blog.objects.filter(title__startswith=search_query)
+    print(types_teas)
 
-    else:
-        return render(request, 'Tea_App/search.html', context=dict)
+    dict = {'types_teas':types_teas}
 
+
+    return render(request, 'Tea_App/search.html',context=dict)
