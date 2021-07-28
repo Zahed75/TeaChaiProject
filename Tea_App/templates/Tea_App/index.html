@@ -37,11 +37,16 @@
                 <div class="featured-section mt-5 d-flex justify-content-center">
                     <div class="featured-heading mt-5 text-center">
                         {% for item in site_utils %}
+                            <div class="d-flex flex-column align-items-center">
                             {{item.home_first_section_heading | safe }}
+                            <div class="mini-underline my-3"></div>
+                            </div>
                         {% endfor %}
                         {% comment %} <b>Featured Listings</b><br>
                         <b><span>Find Your Perfect Tea</span></b> {% endcomment %}
                     </div>
+
+
                 </div>
                 <!-- ======== / Featured heading ========= -->
 
@@ -55,34 +60,6 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                    {% comment %} <div>
-                        <a href="#"><img src="{% static 'img/white-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>White Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/green-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Green Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/oolong-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Oolong Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/rooibos-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Rooibos Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/fermented-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Fermented Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/herbal-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Herbal Tea</b>
-                    </div>
-                    <div>
-                        <a href="#"><img src="{% static 'img/matcha-tea.jpg' %}" class="img-fluid"></a><br>
-                        <b>Matcha Tea</b>
-                    </div> {% endcomment %}
                 </div>
                 <!-- ======== Featured items ========== -->
             </div>
@@ -123,7 +100,10 @@
             <div class="featured-section mt-5 ">
                 <div class="featured-heading mt-5 text-center knowledge-heading">
                     {% for item in site_utils %}
+                        <div class="d-flex flex-column align-items-center">
                         {{item.home_second_section_heading | safe }}
+                        <div class="mini-underline my-3"></div>
+                        </div>
                     {% endfor %}
                     {% comment %} <b><span>Tea Knowledge</span></b> {% endcomment %}
                 </div>
@@ -132,7 +112,8 @@
                     {% if item.second_section %}
                         <div>
                             <a href="{% url 'Tea_App:tea_details' item.id %}"><img src="{{item.tea_picture.url}}" class="img-fluid"></a><br>
-                            <b>{{item.type_name}}</b>
+                            <b>{{item.type_name}}</b> <br>
+                            <span>{{ item.date }}</span>
                         </div>
                     {% endif %}
                 {% endfor %}

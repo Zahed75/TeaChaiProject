@@ -27,4 +27,19 @@
     .subs-field {
         width: 200px;
     }
+
+    .subscription-card {
+        display: none !important;
+    }
 }
+
+@media (max-width: 425px) {
+    .subscription-card form {
+        display: none !important;
+    }
+
+    .subscription-card h3 {
+        display: none !important;
+    }
+}
+

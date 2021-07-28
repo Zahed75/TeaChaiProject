@@ -10,7 +10,10 @@
         <div class="featured-section mt-5 d-flex justify-content-center">
             <div class="featured-heading mt-5 text-center">
             {% for item in site_utils %}
+                <div class="d-flex flex-column align-items-center">
                 {{item.types_heading | safe }}
+                <div class="mini-underline my-3"></div>
+                </div>
             {% endfor %}
                 {% comment %} <b><span>Variations of Tea For You</span></b> {% endcomment %}
             </div>

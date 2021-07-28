@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static 'img/logo.ico' %}" type="image/ico">
+    <link rel="icon" href="{% static 'img/favicon2.ico.ico' %}" type="image/icon">
     <title>{% block title %}{% endblock title %}</title>
 
     <!-- Bootstrap5 cdn -->
@@ -23,6 +23,98 @@
     <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/media.css' %}">
+
+    <style>
+        @media (max-width: 425px) {
+            .subscription-card form {
+                display: none !important;
+            }
+
+            .subscription-card h3 {
+                display: none !important;
+            }
+        }
+
+        .subscription-card h3 {
+            color: black;
+        }
+
+        .about-me-card h3 {
+            color: black;
+            border-bottom: 2px solid black;
+        }
+
+        @media (max-width: 1200px) {
+            .navbar_links {
+                display: none !important;
+            }
+
+            .toggler-btn {
+                display: block;
+            }
+
+            .menu-has-children:hover > .submenu {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .phone-navbar-main {
+                display: none !important;
+            }
+        }
+
+        .menu-has-children {
+            list-style: none;
+        }
+
+        .submenu {
+            padding: 20px;
+            position: absolute;
+            display: none;
+            background: grey;
+            z-index: 5000;
+        }
+
+        .menu-has-children:hover > .submenu {
+            display: block;
+        }
+
+        .nav_item {
+            color: #fff !important;
+            margin-top: 10px !important;
+        }
+
+        .nav_links li ul li a, .submenu li a {
+            color: #fff !important;
+            padding-top: 10px !important;
+        }
+
+        .nav_links li ul li a:hover, .submenu li a:hover {
+            {#background: rgba(28, 28, 27, 0.24);#}
+            color: black;
+        }
+
+        .mini-underline {
+            width: 40px;
+            height: 2px;
+            background: black;
+        }
+
+        .knowledge-heading {
+            {#border-top: 5px solid rgb(243, 243, 243);#}
+            border-top: none !important;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: none !important;
+        }
+
+        .card-img img {
+            width: 280px;
+            height: 267px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
 
@@ -59,7 +151,7 @@
     <!-- ============ Logo ============== -->
     <div class="row">
         <div class="col-sm-12 d-flex justify-content-center header-logo">
-            <a href="#"><img src="{% static 'img/logo.jpg' %}" class="img-fluid"></a>
+            <a href="#"><img src="{% static 'img/logo.png' %}" class="img-fluid"></a>
         </div>
     </div>
     <!-- ============ Logo ============== -->
@@ -70,13 +162,37 @@
             <div class="col-sm-12 navbar d-flex justify-content-center">
                 <div class="navbar-body">
                     <nav>
-                        <div class="nav_links d-flex flex-row">
+                        <div class="navbar_links nav_links d-flex flex-row align-items-center" id="navbar_links_id">
                             <a href="{% url 'Tea_App:home' %}">HOME</a>
-                            <a href="{% url 'Tea_App:help' %}">TEA HELP</a>
-                            <a href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>
-                            <a href="{% url 'Tea_App:blog' %}">BLOG</a>
-                            <a href="{% url 'Tea_App:about' %}">ABOUT US</a>
+                            <a href="{% url 'Tea_App:help' %}">Tea Help</a>
+
+                            <li class="menu-has-children"><a href="#">Types of Tea &nbsp;<i class="fas fa-sort-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="{% url 'Tea_App:black_tea' %}" id="nav_item">Black Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:green_tea' %}" id="nav_item">Green Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:white_tea' %}" id="nav_item">White Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:matcha_tea' %}" id="nav_item">Matcha Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:oolong_tea' %}" id="nav_item">Oolong Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:fermented_tea' %}" id="nav_item">Fermented Tea</a></li>
+                                    <li><a href="{% url 'Tea_App:herbal_tea' %}" id="nav_item">Herbal Tea</a></li>
+                                </ul>
+                            </li>
+                            <a href="{% url 'Tea_App:blog' %}">Blog</a>
+                            <a href="{% url 'Tea_App:about' %}">About Us</a>
                         </div>
+{#                        <div class="nav_links d-flex flex-row">#}
+{#                            <a href="{% url 'Tea_App:home' %}">HOME</a>#}
+{#                            <a href="{% url 'Tea_App:help' %}">TEA HELP</a>#}
+{#                            <a href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>#}
+{#                            <li class="menu-has-children"><a href="#">SYLLABUS & CURRICULUM &nbsp;<i class="fas fa-sort-down"></i></a>#}
+{#                                <ul class="submenu">#}
+{#                                    <li><a href="#">B.S.S.</a></li>#}
+{#                                    <li><a href="#">M.S.S.</a></li>#}
+{#                                    <li><a href="#">M.Phil & PhD</a></li>#}
+{#                                </ul>#}
+{#                            <a href="{% url 'Tea_App:blog' %}">BLOG</a>#}
+{#                            <a href="{% url 'Tea_App:about' %}">ABOUT US</a>#}
+{#                        </div>#}
                     </nav>
                 </div>
                 <div class="toggler" id="toggler_id">
@@ -92,7 +208,20 @@
         <div class="phone-navbar d-flex flex-column justify-content-center show" id="phoneNav">
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:home' %}">HOME</a>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:help' %}">TEA HELP</a>
-            <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>
+            <ul>
+            <li class="menu-has-children my-5">
+                <a href="#">Types of Tea &nbsp;<i class="fas fa-sort-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="{% url 'Tea_App:black_tea' %}" id="nav_item">Black Tea</a></li>
+                    <li><a href="{% url 'Tea_App:green_tea' %}" id="nav_item">Green Tea</a></li>
+                    <li><a href="{% url 'Tea_App:white_tea' %}" id="nav_item">White Tea</a></li>
+                    <li><a href="{% url 'Tea_App:matcha_tea' %}" id="nav_item">Matcha Tea</a></li>
+                    <li><a href="{% url 'Tea_App:oolong_tea' %}" id="nav_item">Oolong Tea</a></li>
+                    <li><a href="{% url 'Tea_App:fermented_tea' %}" id="nav_item">Fermented Tea</a></li>
+                    <li><a href="{% url 'Tea_App:herbal_tea' %}" id="nav_item">Herbal Tea</a></li>
+                </ul>
+            </li>
+            </ul>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:blog' %}">BLOG</a>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:about' %}">ABOUT US</a>
         </div>
@@ -114,7 +243,7 @@
                 </p>
             </div>
             <div class="col-sm-4 text-center middle-section d-flex flex-column align-items-center mt-5 footer-logo">
-                <img src="{% static 'img/logo.jpg' %}" class="img-fluid">
+                <img src="{% static 'img/logo.png' %}" class="img-fluid">
                 {% comment %} <img src="{{site_utils.site_logo.url}}" class="img-fluid"> {% endcomment %}
                 <p class="mt-3">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi pariatur exercitationem
@@ -129,7 +258,12 @@
                     <a href="#" id="footer-instagram"><i class="fab fa-instagram"></i></a>
                 </div>
 
-                <div class="text-center">&copy; All Rights Reserved by <a href="https://www.facebook.com/groups/teamahoban">TeamAhoban</a></div>
+                <div class="text-center my-5">
+                    &copy; All Rights Reserved by <a href="https://www.facebook.com/groups/teamahoban">TeamAhoban</a>
+                    <br>
+                    <span>Developed by <a href="https://www.facebook.com/Zahedhasan.Ayat">Zahed Hasan</a> and <a
+                            href="https://www.facebook.com/profile.php?id=100010255426861">Mahian Mahin</a></span>
+                </div>
             </div>
             <div class="col-sm-4 disclaimer-section text-center d-flex flex-column justify-content-center align-items-center mt-5">
                 <h3>Quick Links</h3>

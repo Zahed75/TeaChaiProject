@@ -1,14 +1,16 @@
 from django.db import models
+
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
-from datetime import datetime
+import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
+from datetime import  timezone
 
 
 class SiteUtilities(models.Model):
-    about_us_avatar = models.ImageField(upload_to = 'site_utilities')
+    about_us_avatar = models.ImageField(upload_to = 'site_utilities',verbose_name="Please put your about us profile pic")
     about_us_description = RichTextField()
     help_text = RichTextField()
     home_first_section_heading = RichTextField()
@@ -24,7 +26,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     blog = RichTextField()
     thumbnail_img = models.ImageField(upload_to = 'blog_thumbnails')
-    published_date = models.DateTimeField(default=datetime.now(), blank=True)
+    published_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -60,4 +62,47 @@ class TypesOfTea(models.Model):
     tea_description = RichTextField()
     first_section = models.BooleanField(default = False)
     second_section = models.BooleanField(default = False)
+    date = models.DateTimeField(auto_now_add=True)
 
+class Black_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='black_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+class Green_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='green_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+
+class White_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='white_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+class Matcha_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='matcha_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+class Oolong_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='oolong_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+class Fermented_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='fermented_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+class Herbal_tea(models.Model):
+    tea_picture = models.ImageField(upload_to='herbal_tea')
+    type_name = models.CharField(max_length=100, null=True)
+    tea_description = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider, TypesOfTea
+from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider, TypesOfTea, Black_tea, White_tea, Green_tea, Fermented_tea, Herbal_tea, Oolong_tea, Matcha_tea
 # Register your models here.
 
 @admin.register(Blog)
@@ -31,3 +31,37 @@ class ImageSliderAdmin(admin.ModelAdmin):
 class TypesAdmin(admin.ModelAdmin):
     list_display = ('id', 'type_name', 'first_section', 'second_section')
     icon_name = 'view_column'
+
+@admin.register(Black_tea)
+class BlackTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'
+
+@admin.register(White_tea)
+class WhiteTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'
+
+@admin.register(Green_tea)
+class GreenTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'
+
+@admin.register(Matcha_tea)
+class MatchaTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+
+@admin.register(Herbal_tea)
+class HerbalTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'
+
+@admin.register(Oolong_tea)
+class OolongTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'
+
+@admin.register(Fermented_tea)
+class FermentedTeaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type_name', 'date')
+    icon_name = 'local_cafe'

@@ -10,7 +10,7 @@ from django.views.generic.edit import DeleteView
 from django.views import View
 
 # from Tea_App.views import blog
-from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea
+from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea, Black_tea, Green_tea, White_tea, Matcha_tea, Oolong_tea, Fermented_tea, Herbal_tea
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
@@ -41,14 +41,13 @@ def home(request):
     image_slider = ImageSlider.objects.all()
     about_me = AboutMe.objects.all()
     site_utils = SiteUtilities.objects.all()
-    types = TypesOfTea.objects.all()
+    # types = TypesOfTea.objects.all()
 
-    template_name = 'Tea_App/index.html'
+    # template_name = 'Tea_App/index.html'
     dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types,
             }
 
-    return render(request, template_name, context=dict)
-
+    return render(request,'Tea_App/index.html',context=dict)
 
 def about(request):
     site_utils = SiteUtilities.objects.all()
@@ -156,3 +155,52 @@ def search(request):
 
 
     return render(request, 'Tea_App/search.html',context=dict)
+
+def black_tea(request):
+    black_tea = Black_tea.objects.all()
+    data = {
+        'black_tea': black_tea
+    }
+    return render(request, 'Tea_App/black_tea.html', data)
+
+def green_tea(request):
+    green_tea = Green_tea.objects.all()
+    data = {
+        'green_tea': green_tea
+    }
+    return render(request, 'Tea_App/green_tea.html', data)
+
+def white_tea(request):
+    white_tea = White_tea.objects.all()
+    data = {
+        'white_tea': white_tea
+    }
+    return render(request, 'Tea_App/white_tea.html', data)
+
+def matcha_tea(request):
+    matcha_tea = Matcha_tea.objects.all()
+    data = {
+        'matcha_tea': matcha_tea
+    }
+    return render(request, 'Tea_App/matcha_tea.html', data)
+
+def oolong_tea(request):
+    oolong_tea = Oolong_tea.objects.all()
+    data = {
+        'oolong_tea': oolong_tea
+    }
+    return render(request, 'Tea_App/oolong_tea.html', data)
+
+def fermented_tea(request):
+    fermented_tea = Fermented_tea.objects.all()
+    data = {
+        'fermented_tea': fermented_tea
+    }
+    return render(request, 'Tea_App/fermented_tea.html', data)
+
+def herbal_tea(request):
+    herbal_tea = Herbal_tea.objects.all()
+    data = {
+        'herbal_tea': herbal_tea
+    }
+    return render(request, 'Tea_App/herbal_tea.html', data)

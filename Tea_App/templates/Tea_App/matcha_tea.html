@@ -1,0 +1,28 @@
+{% extends 'Tea_App/base.html' %}
+{% load static %}
+
+{% block title %}
+    {% for item in matcha_tea %}
+        {{ item.type_name }}
+    {% endfor %}
+
+ {% endblock title %}
+
+{% block content %}
+
+        <div class="row mt-5">
+            <div class="col-md-6 mb-3">
+                {% for item in matcha_tea %}
+                    <h3 class="my-3">{{item.type_name}}</h3>
+                    <small class="my-2" style="color: grey">{{ item.date }}</small>
+                    <img src="{{item.tea_picture.url}}" class="img-fluid my-5">
+            </div>
+
+            <div class="col-sm-12">
+                {{item.tea_description | safe }}
+        </div>
+            {% endfor %}
+
+    </section>
+
+{% endblock content %}
