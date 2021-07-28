@@ -132,9 +132,11 @@
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-between">
                 <div class="links">
-                    <a href="#" id="facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="#" id="twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" id="youtube"><i class="fab fa-youtube"></i></a>
+                    {% for item in header_footer %}
+                    <a href="{{ item.facebook_link }}" target="_blank" id="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="{{ item.twitter_link }}" target="_blank" id="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ item.youtube_link }}" target="_blank" id="youtube"><i class="fab fa-youtube"></i></a>
+                    {% endfor %}
                 </div>
 
                 <div class="search d-flex flex-row">
@@ -247,24 +249,25 @@
             <div class="col-sm-4 disclaimer-section text-center d-flex flex-column justify-content-center align-items-center mt-5">
                 <h3>Disclaimer</h3>
                 <p class="mt-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi pariatur exercitationem
-                    perspiciatis doloribus, optio consequuntur numquam ex magni ab provident!
+                    {% for item in header_footer %}
+                    {{ item.disclaimer_text | safe }}
+
                 </p>
             </div>
             <div class="col-sm-4 text-center middle-section d-flex flex-column align-items-center mt-5 footer-logo">
                 <img src="{% static 'img/logo.png' %}" class="img-fluid">
                 {% comment %} <img src="{{site_utils.site_logo.url}}" class="img-fluid"> {% endcomment %}
                 <p class="mt-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi pariatur exercitationem
-                    perspiciatis doloribus, optio consequuntur numquam ex magni ab provident!
+                    {{ item.footer_under_logo_text | safe }}
                 </p>
 
                 <div class="d-flex flex-row justify-content-center align-items-center footer-social-links">
-                    <a href="#" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" id="footer-twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" id="footer-linkedin"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" id="footer-dribble"><i class="fab fa-dribbble"></i></a>
-                    <a href="#" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ item.facebook_link }}" target="_blank" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ item.twitter_link }}" target="_blank" id="footer-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ item.linkedin_link }}" target="_blank" id="footer-linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="{{ item.dribble_link }}" target="_blank" id="footer-dribble"><i class="fab fa-dribbble"></i></a>
+                    <a href="{{ item.instagram_link }}" target="_blank" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                    {% endfor %}
                 </div>
 
                 <div class="text-center my-5">

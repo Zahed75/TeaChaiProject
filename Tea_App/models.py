@@ -106,3 +106,14 @@ class Herbal_tea(models.Model):
     type_name = models.CharField(max_length=100, null=True)
     tea_description = RichTextField()
     date = models.DateTimeField(auto_now_add=True)
+
+class HeaderAndFooter(models.Model):
+    disclaimer_text = RichTextField(verbose_name='Put your footer disclaimer section text here')
+    footer_under_logo_text = RichTextField(verbose_name='Put your footer under logo text here')
+    facebook_link = models.URLField(max_length=500, verbose_name='Your facebook account link')
+    youtube_link = models.URLField(max_length=500, verbose_name='Your youtube account link')
+    linkedin_link = models.URLField(max_length=500, verbose_name='Your linkedIn account link')
+    twitter_link = models.URLField(max_length=500, verbose_name='Your twitter account link')
+    dribble_link = models.URLField(max_length=500, verbose_name='Your dribble account link')
+    instagram_link = models.URLField(max_length=500, verbose_name='Your instagram account link')
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider, TypesOfTea, Black_tea, White_tea, Green_tea, Fermented_tea, Herbal_tea, Oolong_tea, Matcha_tea
+from .models import Blog, SiteUtilities, Subscribers, AboutMe, ImageSlider, TypesOfTea, Black_tea, White_tea, Green_tea, Fermented_tea, Herbal_tea, Oolong_tea, Matcha_tea, HeaderAndFooter
 # Register your models here.
 
 @admin.register(Blog)
@@ -65,3 +65,8 @@ class OolongTeaAdmin(admin.ModelAdmin):
 class FermentedTeaAdmin(admin.ModelAdmin):
     list_display = ('id', 'type_name', 'date')
     icon_name = 'local_cafe'
+
+@admin.register(HeaderAndFooter)
+class HeaderFooterAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+    icon_name = 'attach_file'

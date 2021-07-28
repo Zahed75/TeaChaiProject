@@ -84,6 +84,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Tea_App.context_processors.headerfooter'
             ],
         },
     },
@@ -178,9 +179,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'drinkteaville@gmail.com'
 EMAIL_HOST_PASSWORD = 'hrtdwdkhieagxekx'
 
-
-
 # admin
 
 
 #fsqgvecvxloxqlvu'
+
