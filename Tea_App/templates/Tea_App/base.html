@@ -72,8 +72,11 @@
             padding: 20px;
             position: absolute;
             display: none;
-            background: grey;
+            background: #bdbdbd;
             z-index: 5000;
+            line-height: 32px;
+            padding-left: 5px;
+            padding-right: 5px;
         }
 
         .menu-has-children:hover > .submenu {
@@ -91,8 +94,7 @@
         }
 
         .nav_links li ul li a:hover, .submenu li a:hover {
-            {#background: rgba(28, 28, 27, 0.24);#}
-            color: black;
+        {#background: rgba(28, 28, 27, 0.24);#} color: black;
         }
 
         .mini-underline {
@@ -102,8 +104,7 @@
         }
 
         .knowledge-heading {
-            {#border-top: 5px solid rgb(243, 243, 243);#}
-            border-top: none !important;
+        {#border-top: 5px solid rgb(243, 243, 243);#} border-top: none !important;
             padding-top: 10px;
             padding-bottom: 10px;
             border-bottom: none !important;
@@ -113,6 +114,12 @@
             width: 280px;
             height: 267px;
             object-fit: cover;
+        }
+
+        dl, ol, ul {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            list-style-type: none;
         }
     </style>
 </head>
@@ -131,11 +138,12 @@
                 </div>
 
                 <div class="search d-flex flex-row">
-                    <form method="POST" class="form-inline d-flex flex-row" action="{%  url 'Tea_App:search' %}">
+                    <form method="POST" class="form-inline d-flex flex-row" action="{% url 'Tea_App:search' %}">
                         {% csrf_token %}
-                        <input class="form-control mr-sm-2 search_field" type="search" placeholder="Search" aria-label="Search"
+                        <input class="form-control mr-sm-2 search_field" type="search" placeholder="Search"
+                               aria-label="Search"
                                name="search" id="search">
-{#                        <button class="btn btn-outline-success my-2 my-sm-0 search_btn" type="submit">Search</button>#}
+                        {#                        <button class="btn btn-outline-success my-2 my-sm-0 search_btn" type="submit">Search</button>#}
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                     </form>
 
@@ -166,7 +174,8 @@
                             <a href="{% url 'Tea_App:home' %}">HOME</a>
                             <a href="{% url 'Tea_App:help' %}">Tea Help</a>
 
-                            <li class="menu-has-children"><a href="#">Types of Tea &nbsp;<i class="fas fa-sort-down"></i></a>
+                            <li class="menu-has-children"><a href="#">Types of Tea &nbsp;<i
+                                    class="fas fa-sort-down"></i></a>
                                 <ul class="submenu">
                                     <li><a href="{% url 'Tea_App:black_tea' %}" id="nav_item">Black Tea</a></li>
                                     <li><a href="{% url 'Tea_App:green_tea' %}" id="nav_item">Green Tea</a></li>
@@ -180,19 +189,19 @@
                             <a href="{% url 'Tea_App:blog' %}">Blog</a>
                             <a href="{% url 'Tea_App:about' %}">About Us</a>
                         </div>
-{#                        <div class="nav_links d-flex flex-row">#}
-{#                            <a href="{% url 'Tea_App:home' %}">HOME</a>#}
-{#                            <a href="{% url 'Tea_App:help' %}">TEA HELP</a>#}
-{#                            <a href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>#}
-{#                            <li class="menu-has-children"><a href="#">SYLLABUS & CURRICULUM &nbsp;<i class="fas fa-sort-down"></i></a>#}
-{#                                <ul class="submenu">#}
-{#                                    <li><a href="#">B.S.S.</a></li>#}
-{#                                    <li><a href="#">M.S.S.</a></li>#}
-{#                                    <li><a href="#">M.Phil & PhD</a></li>#}
-{#                                </ul>#}
-{#                            <a href="{% url 'Tea_App:blog' %}">BLOG</a>#}
-{#                            <a href="{% url 'Tea_App:about' %}">ABOUT US</a>#}
-{#                        </div>#}
+                        {#                        <div class="nav_links d-flex flex-row">#}
+                        {#                            <a href="{% url 'Tea_App:home' %}">HOME</a>#}
+                        {#                            <a href="{% url 'Tea_App:help' %}">TEA HELP</a>#}
+                        {#                            <a href="{% url 'Tea_App:types' %}">TYPES OF TEA</a>#}
+                        {#                            <li class="menu-has-children"><a href="#">SYLLABUS & CURRICULUM &nbsp;<i class="fas fa-sort-down"></i></a>#}
+                        {#                                <ul class="submenu">#}
+                        {#                                    <li><a href="#">B.S.S.</a></li>#}
+                        {#                                    <li><a href="#">M.S.S.</a></li>#}
+                        {#                                    <li><a href="#">M.Phil & PhD</a></li>#}
+                        {#                                </ul>#}
+                        {#                            <a href="{% url 'Tea_App:blog' %}">BLOG</a>#}
+                        {#                            <a href="{% url 'Tea_App:about' %}">ABOUT US</a>#}
+                        {#                        </div>#}
                     </nav>
                 </div>
                 <div class="toggler" id="toggler_id">
@@ -209,18 +218,18 @@
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:home' %}">HOME</a>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:help' %}">TEA HELP</a>
             <ul>
-            <li class="menu-has-children my-5">
-                <a href="#">Types of Tea &nbsp;<i class="fas fa-sort-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="{% url 'Tea_App:black_tea' %}" id="nav_item">Black Tea</a></li>
-                    <li><a href="{% url 'Tea_App:green_tea' %}" id="nav_item">Green Tea</a></li>
-                    <li><a href="{% url 'Tea_App:white_tea' %}" id="nav_item">White Tea</a></li>
-                    <li><a href="{% url 'Tea_App:matcha_tea' %}" id="nav_item">Matcha Tea</a></li>
-                    <li><a href="{% url 'Tea_App:oolong_tea' %}" id="nav_item">Oolong Tea</a></li>
-                    <li><a href="{% url 'Tea_App:fermented_tea' %}" id="nav_item">Fermented Tea</a></li>
-                    <li><a href="{% url 'Tea_App:herbal_tea' %}" id="nav_item">Herbal Tea</a></li>
-                </ul>
-            </li>
+                <li class="menu-has-children my-5">
+                    <a href="#">Types of Tea &nbsp;<i class="fas fa-sort-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="{% url 'Tea_App:black_tea' %}" id="nav_item">Black Tea</a></li>
+                        <li><a href="{% url 'Tea_App:green_tea' %}" id="nav_item">Green Tea</a></li>
+                        <li><a href="{% url 'Tea_App:white_tea' %}" id="nav_item">White Tea</a></li>
+                        <li><a href="{% url 'Tea_App:matcha_tea' %}" id="nav_item">Matcha Tea</a></li>
+                        <li><a href="{% url 'Tea_App:oolong_tea' %}" id="nav_item">Oolong Tea</a></li>
+                        <li><a href="{% url 'Tea_App:fermented_tea' %}" id="nav_item">Fermented Tea</a></li>
+                        <li><a href="{% url 'Tea_App:herbal_tea' %}" id="nav_item">Herbal Tea</a></li>
+                    </ul>
+                </li>
             </ul>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:blog' %}">BLOG</a>
             <a class="d-flex flex-row justify-content-center" href="{% url 'Tea_App:about' %}">ABOUT US</a>
