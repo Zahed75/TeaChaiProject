@@ -10,7 +10,8 @@ from django.views.generic.edit import DeleteView
 from django.views import View
 
 # from Tea_App.views import blog
-from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea, Black_tea, Green_tea, White_tea, Matcha_tea, Oolong_tea, Fermented_tea, Herbal_tea
+from .models import Blog, SiteUtilities, AboutMe, ImageSlider, Subscribers, TypesOfTea, Black_tea, Green_tea, White_tea, \
+    Matcha_tea, Oolong_tea, Fermented_tea, Herbal_tea
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
@@ -47,7 +48,8 @@ def home(request):
     dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types,
             }
 
-    return render(request,'Tea_App/index.html',context=dict)
+    return render(request, 'Tea_App/index.html', context=dict)
+
 
 def about(request):
     site_utils = SiteUtilities.objects.all()
@@ -102,7 +104,11 @@ class Contact(TemplateView):
     template_name = './Tea_App/help.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        site_utils = SiteUtilities.objects.all()
+
+        dict = {'site_utils': site_utils}
+
+        return render(request, self.template_name,dict)
 
     def post(self, request):
         help_name = request.POST.get('help_name')
@@ -148,13 +154,13 @@ def search(request):
     search_query = ""
     if request.method == "POST":
         search_query = request.POST.get("search")
-    types_teas=Blog.objects.filter(title__startswith=search_query)
+    types_teas = Blog.objects.filter(title__startswith=search_query)
     print(types_teas)
 
-    dict = {'types_teas':types_teas}
+    dict = {'types_teas': types_teas}
 
+    return render(request, 'Tea_App/search.html', context=dict)
 
-    return render(request, 'Tea_App/search.html',context=dict)
 
 def black_tea(request):
     black_tea = Black_tea.objects.all()
@@ -163,12 +169,14 @@ def black_tea(request):
     }
     return render(request, 'Tea_App/black_tea.html', data)
 
+
 def green_tea(request):
     green_tea = Green_tea.objects.all()
     data = {
         'green_tea': green_tea
     }
     return render(request, 'Tea_App/green_tea.html', data)
+
 
 def white_tea(request):
     white_tea = White_tea.objects.all()
@@ -177,12 +185,14 @@ def white_tea(request):
     }
     return render(request, 'Tea_App/white_tea.html', data)
 
+
 def matcha_tea(request):
     matcha_tea = Matcha_tea.objects.all()
     data = {
         'matcha_tea': matcha_tea
     }
     return render(request, 'Tea_App/matcha_tea.html', data)
+
 
 def oolong_tea(request):
     oolong_tea = Oolong_tea.objects.all()
@@ -191,12 +201,14 @@ def oolong_tea(request):
     }
     return render(request, 'Tea_App/oolong_tea.html', data)
 
+
 def fermented_tea(request):
     fermented_tea = Fermented_tea.objects.all()
     data = {
         'fermented_tea': fermented_tea
     }
     return render(request, 'Tea_App/fermented_tea.html', data)
+
 
 def herbal_tea(request):
     herbal_tea = Herbal_tea.objects.all()
