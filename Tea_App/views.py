@@ -42,7 +42,7 @@ def home(request):
     image_slider = ImageSlider.objects.all()
     about_me = AboutMe.objects.all()
     site_utils = SiteUtilities.objects.all()
-    # types = TypesOfTea.objects.all()
+    types = TypesOfTea.objects.all()
 
     # template_name = 'Tea_App/index.html'
     dict = {'about_me': about_me, 'img_slider': image_slider, 'site_utils': site_utils, 'types': types,
